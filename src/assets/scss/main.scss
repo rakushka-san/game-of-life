@@ -1,9 +1,11 @@
 @import '@/assets/scss/reset';
 @import '@/assets/scss/fonts';
+@import '@/assets/scss/animations';
 
 body {
 	padding: 2rem;
 	background-color: $colorPrimaryBackground;
 	color: $colorText;
 	font-family: 'JetBrains Mono';
+	transition: background-color 0.5s ease;
 }
