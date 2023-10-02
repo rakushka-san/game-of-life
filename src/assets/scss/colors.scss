@@ -1,0 +1,20 @@
+:root {
+	--color-primary-background: #1d1d1d;
+	--color-secondary-background: #262626;
+	--color-primary-border: #4d4d4d;
+	--color-text: #f4f4f4;
+}
+
+[data-theme='light'] {
+	--color-primary-background: #e5e5e5;
+	--color-secondary-background: #d9d9d9;
+	--color-primary-border: #b4b4b4;
+	--color-text: #3a3a3a;
+}
+
+$colorPrimaryBackground: var(--color-primary-background);
+$colorSecondaryBackground: var(--color-secondary-background);
+$colorPrimaryBorder: var(--color-primary-border);
+$colorText: var(--color-text);
+$colorButton: #7faa65;
+$colorButtonHover: #b8d998;

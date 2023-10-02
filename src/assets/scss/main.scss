@@ -1,0 +1,8 @@
+@import '@/assets/scss/reset';
+@import '@/assets/scss/fonts';
+
+body {
+	background-color: $colorPrimaryBackground;
+	color: $colorText;
+	font-family: 'JetBrains Mono';
+}
