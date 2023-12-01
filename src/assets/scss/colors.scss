@@ -3,6 +3,8 @@
 	--color-secondary-background: #262626;
 	--color-primary-border: #4d4d4d;
 	--color-text: #f4f4f4;
+	--color-button: #7faa65;
+	--color-button-hover: #b8d998;
 }
 
 [data-theme='light'] {
@@ -10,11 +12,13 @@
 	--color-secondary-background: #d9d9d9;
 	--color-primary-border: #b4b4b4;
 	--color-text: #3a3a3a;
+	--color-button: #3e6f21;
+	--color-button-hover: #7faa65;
 }
 
 $colorPrimaryBackground: var(--color-primary-background);
 $colorSecondaryBackground: var(--color-secondary-background);
 $colorPrimaryBorder: var(--color-primary-border);
 $colorText: var(--color-text);
-$colorButton: #7faa65;
-$colorButtonHover: #b8d998;
+$colorButton: var(--color-button);
+$colorButtonHover: var(--color-button-hover);
