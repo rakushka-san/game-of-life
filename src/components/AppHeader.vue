@@ -106,10 +106,24 @@ const isStorageListOpen = ref(false)
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	gap: 1rem;
+
+	@include bp(xs) {
+		flex-direction: column-reverse;
+	}
 
 	&__heading {
 		font-weight: 500;
 		font-size: 1.5rem;
+		text-align: center;
+
+		@include bp(sm) {
+			font-size: 1.25rem;
+		}
+
+		@include bp(xs) {
+			font-size: 1rem;
+		}
 	}
 
 	&__controls {

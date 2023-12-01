@@ -1,0 +1,17 @@
+@import '@/assets/scss/breakpoints';
+
+@mixin media($width) {
+	@media (max-width: $width) {
+		@content;
+	}
+}
+
+@mixin bp($name) {
+	$width: map-get(
+		$map: $breakpoints,
+		$key: $name,
+	);
+	@include media($width) {
+		@content;
+	}
+}
