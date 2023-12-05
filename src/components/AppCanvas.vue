@@ -2,16 +2,15 @@
 import { onMounted, ref } from 'vue'
 import { useThemeStore } from '@/stores/ThemeStore'
 import { Theme } from '@/enums/Theme'
-import { Game } from '@/game/Game'
+import { useGameStore } from '@/stores/GameStore'
 
 const RADIUS = 8
 
 const themeStore = useThemeStore()
+const gameStore = useGameStore()
 
 const canvasContainer = ref<HTMLDivElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
-
-const game = new Game()
 
 onMounted(() => {
 	if (!(canvas.value && canvasContainer.value)) return
@@ -29,14 +28,14 @@ onMounted(() => {
 		ctx.fillStyle = '#3e6f21'
 	}
 
-	game.addCell(1, 0)
-	game.addCell(2, 1)
-	game.addCell(0, 2)
-	game.addCell(1, 2)
-	game.addCell(2, 2)
+	gameStore.game.addCell(1, 0)
+	gameStore.game.addCell(2, 1)
+	gameStore.game.addCell(0, 2)
+	gameStore.game.addCell(1, 2)
+	gameStore.game.addCell(2, 2)
 
 	const drawCells = () => {
-		const cells = game.peek()
+		const cells = gameStore.game.peek()
 
 		if (canvas.value)
 			ctx.clearRect(0, 0, canvas.value.width, canvas.value.height)
@@ -50,10 +49,10 @@ onMounted(() => {
 
 	drawCells()
 
-	setInterval(() => {
-		game.step()
+	gameStore.setGameInterval(() => {
+		gameStore.game.step()
 		drawCells()
-	}, 50)
+	})
 })
 </script>
 

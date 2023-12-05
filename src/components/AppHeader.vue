@@ -19,42 +19,74 @@ import IconDraw from './icons/IconDraw.vue'
 import IconErase from './icons/IconErase.vue'
 import IconLoad from './icons/IconLoad.vue'
 import IconSave from './icons/IconSave.vue'
-import { Transition, TransitionGroup, ref } from 'vue'
+import { Transition, ref } from 'vue'
 import { useThemeStore } from '@/stores/ThemeStore'
 import { Theme } from '@/enums/Theme'
+import { useGameStore } from '@/stores/GameStore'
+import { Speed } from '@/enums/Speed'
 
 const themeStore = useThemeStore()
+const gameStore = useGameStore()
 
 const isSpeedListOpen = ref(false)
 const isEditListOpen = ref(false)
 const isStorageListOpen = ref(false)
+
+function changeSpeed(speed: Speed) {
+	gameStore.changeSpeed(speed)
+	isSpeedListOpen.value = false
+}
 </script>
 
 <template>
 	<header class="header">
 		<div class="header__controls">
-			<AppIconButton title="Play"> <IconPlay /></AppIconButton>
-			<AppIconButton title="Pause"> <IconPause /></AppIconButton>
+			<AppIconButton title="Play" @click="gameStore.play">
+				<IconPlay
+			/></AppIconButton>
+			<AppIconButton title="Pause" @click="gameStore.pause">
+				<IconPause
+			/></AppIconButton>
 			<div class="header__control_has-list">
 				<AppIconButton
 					title="Change Speed"
 					@click="isSpeedListOpen = !isSpeedListOpen"
 				>
-					<IconSpeedMed
-				/></AppIconButton>
+					<IconSpeedMin v-if="gameStore.speed === Speed.min" />
+					<IconSpeedLow v-else-if="gameStore.speed === Speed.low" />
+					<IconSpeedMedLow v-else-if="gameStore.speed === Speed.medLow" />
+					<IconSpeedMed v-else-if="gameStore.speed === Speed.med" />
+					<IconSpeedMedHigh v-else-if="gameStore.speed === Speed.medHigh" />
+					<IconSpeedHigh v-else-if="gameStore.speed === Speed.high" />
+					<IconSpeedMax v-else-if="gameStore.speed === Speed.max" />
+				</AppIconButton>
 				<Transition name="fade">
 					<AppModal v-if="isSpeedListOpen" class="header__control-list">
-						<AppIconButton title="Min Speed"><IconSpeedMin /></AppIconButton>
-						<AppIconButton title="Low Speed"><IconSpeedLow /></AppIconButton>
-						<AppIconButton title="Med Low Speed"
+						<AppIconButton title="Min Speed" @click="changeSpeed(Speed.min)"
+							><IconSpeedMin
+						/></AppIconButton>
+						<AppIconButton title="Low Speed" @click="changeSpeed(Speed.low)"
+							><IconSpeedLow
+						/></AppIconButton>
+						<AppIconButton
+							title="Med Low Speed"
+							@click="changeSpeed(Speed.medLow)"
 							><IconSpeedMedLow
 						/></AppIconButton>
-						<AppIconButton title="Med Speed"><IconSpeedMed /></AppIconButton>
-						<AppIconButton title="Med High Speed"
+						<AppIconButton title="Med Speed" @click="changeSpeed(Speed.med)"
+							><IconSpeedMed
+						/></AppIconButton>
+						<AppIconButton
+							title="Med High Speed"
+							@click="changeSpeed(Speed.medHigh)"
 							><IconSpeedMedHigh
 						/></AppIconButton>
-						<AppIconButton title="High Speed"><IconSpeedHigh /></AppIconButton>
-						<AppIconButton title="Max Speed"><IconSpeedMax /></AppIconButton>
+						<AppIconButton title="High Speed" @click="changeSpeed(Speed.high)"
+							><IconSpeedHigh
+						/></AppIconButton>
+						<AppIconButton title="Max Speed" @click="changeSpeed(Speed.max)"
+							><IconSpeedMax
+						/></AppIconButton>
 					</AppModal>
 				</Transition>
 			</div>
