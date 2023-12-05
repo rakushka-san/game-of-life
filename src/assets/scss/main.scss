@@ -3,17 +3,8 @@
 @import '@/assets/scss/animations';
 
 body {
-	padding: 2rem;
 	background-color: $colorPrimaryBackground;
 	color: $colorText;
 	font-family: 'JetBrains Mono';
 	transition: background-color 0.5s ease;
-
-	@include bp(sm) {
-		padding: 1rem;
-	}
-
-	@include bp(xs) {
-		padding: 0.5rem;
-	}
 }
